@@ -1,12 +1,14 @@
 package stats
 
-import "github.com/nekruz08/bank/pkg/types"
+import "github.com/nekruz08/bank/v2/pkg/types"
 
 // Avg рассчитывает среднюю сумму платежа.
 func Avg(payments []types.Payment) types.Money {
 	avg:=types.Money(0)
 	for _, payment := range payments {
-		avg+=payment.Amount
+		if payment.Status!=types.StatusFail{
+			avg+=payment.Amount
+		}
 	}
 	return avg/types.Money(len(payments))
 }
@@ -15,7 +17,7 @@ func Avg(payments []types.Payment) types.Money {
 func TotalInCategory(payments []types.Payment,category types.Category)types.Money  {
 	avg:=types.Money(0)
 	for _, payment := range payments {
-		if payment.Category==category{
+		if payment.Category==category&&payment.Status!=types.StatusFail{
 			avg+=payment.Amount
 		}
 	}
