@@ -63,17 +63,17 @@ func TestFilterByCategory_foundOne(t *testing.T) {
 
 func TestFilterByCategory_foundMultple(t *testing.T) {
 	payments:=[]types.Payment{
-		{ID: 1,Category: "auto"},
+		{ID: 1,Category: "food"},
 		{ID: 2,Category: "food"},
-		{ID: 3,Category: "auto"},
+		{ID: 3,Category: "food"},
 		{ID: 4,Category: "auto"},
-		{ID: 5,Category: "fun"},
+		{ID: 5,Category: "auto"},
 
 	}
 	expected:=[]types.Payment{
-		{ID: 1,Category: "auto"},
-		{ID: 2,Category: "auto"},
-		{ID: 3,Category: "auto"},
+		{ID: 1,Category: "food"},
+		{ID: 2,Category: "food"},
+		{ID: 3,Category: "food"},
 	}
 
 	result:=FilterByCategory(payments,"food")
@@ -92,9 +92,9 @@ func TestCategoriesTotal(t *testing.T) {
 		{ID: 5,Category: "fun",		Amount:	4_000_00},
 	}
 	expected:=map[types.Category]types.Money{
-		"auto":8_000_00,
-		"food":2_000_00,
-		"fun":5_000_00,
+		"auto":800000,
+		"food":200000,
+		 "fun":400000,
 	}
 
 	result:=CategoriesTotal(payments)

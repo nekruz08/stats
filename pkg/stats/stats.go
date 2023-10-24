@@ -22,7 +22,7 @@ func TotalInCategory(payments []types.Payment,category types.Category)types.Mone
 	return avg
 }
 
-// FilterByCategory возвращает платежи в укащанной категории.
+// FilterByCategory возвращает платежи в укаpанной категории.
 func FilterByCategory(payments []types.Payment, category types.Category) []types.Payment {
 	var filtered []types.Payment
 	for _, payment := range payments {
