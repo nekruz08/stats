@@ -3,7 +3,7 @@ package stats
 import (
 	"reflect"
 	"testing"
-	"github.com/nekruz08/bank/pkg/types"
+	"github.com/nekruz08/bank/v2/pkg/types"
 )
 
 func TestFilterByCategory_nil(t *testing.T) {
