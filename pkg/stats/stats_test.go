@@ -3,7 +3,6 @@ package stats
 import (
 	"reflect"
 	"testing"
-
 	"github.com/nekruz08/bank/pkg/types"
 )
 
