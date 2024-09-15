@@ -3,7 +3,7 @@ package stats
 import (
 	"fmt"
 
-	"github.com/nekruz08/bank/pkg/bank/types"
+	"github.com/nekruz08/bank/v2/pkg/bank/types"
 )
 
 // Avg testing section
@@ -11,12 +11,13 @@ func ExampleAvg() {
 	fmt.Println(Avg([]types.Payment{
 		{
 			Amount: 2,
+			Status: types.StatusFail,
 		},
 		{
 			Amount: 4,
 		},
 		{
-			Amount: 0,
+			Amount: 2,
 		},
 		{
 			Amount: 0,
@@ -32,13 +33,14 @@ func ExampleTotalInCategory() {
 		{
 			Amount: 2,
 			Category: "food",
+			Status: types.StatusFail,
 		},
 		{
 			Amount: 4,
 			Category: "food",
 		},
 		{
-			Amount: 0,
+			Amount: 2,
 		},
 		{
 			Amount: 0,
