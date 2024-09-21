@@ -10,7 +10,7 @@ func Avg(payments []types.Payment) types.Money {
 		if payment.Amount <= 0 {
 			continue
 		}
-		if payment.Status==types.StatusFail {
+		if payment.Status == types.StatusFail {
 			continue
 		}
 		count++
@@ -23,7 +23,7 @@ func Avg(payments []types.Payment) types.Money {
 func TotalInCategory(payments []types.Payment, category types.Category) types.Money {
 	sum := types.Money(0)
 	for _, payment := range payments {
-		if payment.Status==types.StatusFail {
+		if payment.Status == types.StatusFail {
 			continue
 		}
 		if payment.Category == category {
@@ -32,3 +32,42 @@ func TotalInCategory(payments []types.Payment, category types.Category) types.Mo
 	}
 	return sum
 }
+
+// FilterByCategory возвращает платежи в указанной категории.
+func FilterByCategory(payments []types.Payment,category types.Category) []types.Payment {
+	var filtered []types.Payment
+	for _, payment := range payments {
+		if payment.Category==category{
+			filtered = append(filtered, payment)
+		}
+	}
+	return filtered
+}
+
+// CategoriesTotal возвращает сумму платежей по каждой категории.
+func CategoriesTotal(payments []types.Payment) map[types.Category]types.Money {
+	categories:=map[types.Category]types.Money{}
+
+	for _, payment := range payments {
+		categories[payment.Category]+=payment.Amount
+	}
+	return categories
+}
+
+func CategoriesAvg(payments []types.Payment) map[types.Category]types.Money {
+	categories := map[types.Category]types.Money{}
+	counter := map[types.Category]int{}
+
+	for _, payment := range payments {
+		categories[payment.Category] += payment.Amount
+		counter[payment.Category]++
+	}
+
+	// Подсчитываем среднее значение
+	for category := range categories {
+		categories[category] /= types.Money(counter[category])
+	}
+
+	return categories
+}
+
